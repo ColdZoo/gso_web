@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css"
+	href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="css/bootstrap-table.min.css" />
+	
+<link rel="stylesheet" type="text/css"
+	href="css/md_coda.css" />
+	
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generated-by" content="Markdown PRO, http://markdownpro.com"/>
+<title></title>
+
+
+</head>
+<body>
+	
+		<div class="navbar-wrapper">
+		<div class="container">
+		
+			<div class="row-fluid">
+		<div class="span4" style="padding:0px;">
+			<h1>GSO Framework</h1>		
+		</div>
+		<div class="span8" style="margin:0px;padding:0px;">
+			
+			</div>
+	
+	</div>
+			
+			<div class="navbar navbar-inverse">
+				<div class="navbar-inner">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse"
+						data-target=".nav-collapse">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a id="nav_intro" data-toggle="modal" href="index.html"
+						class="brand">Introduction</a>
+                    <a id="nav_dataset" data-toggle="modal" href="Dataset.html"
+						class="brand">GSO-2015 Dataset</a>
+                    <a id="nav_download" data-toggle="modal" href="Downloads.html"
+						class="brand">Downloads</a>
+                    <a id="nav_contribute" data-toggle="modal" href="Contribute.html"
+						class="brand">Make a Contribution</a>
+
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class='md_wrapper' style="width:930px;margin:0px auto">
+
+	<hr>
+	
+	<!-- ----------------------------MarkDown Starts Here---------------------------------------- -->
+	<h3>What is GSO Framework</h3>
+
+<p>GSO Framework is <code>a framework to judge GIF video&#39;s sentiment.</code> It is the first implementation of GIF Sentiment Ontology(GSO). 
+It is also the <code>first</code> framework targeting on the problem of GIF sentiment analysis for social networks. GSO Framework as well as the GSO is designed by Cai Zheng during his second year as a graduate student in Xiamen University.</p>
+
+<hr>
+
+<h3>Why GSO Framework</h3>
+
+<p>Industries deviate from user habit by taking social network sentiment analysis as social network text analysis. Research for GIF sentiment analysis is still in its infancy.</p>
+
+<p>The problem of GIF sentiment analysis is quite challenging, not only because it hinges on spatio-temporal visual content abstraction, but also because the relationship between such abstraction and final sentiment remains unknown. But we look from another angle. By generating a collection of mid-level representations, modeling the relationship between SentiPair and sentiment, and opening the first procedure to other fast-developing research fields (video classification, et al.), we made the impossible possible.</p>
+
+<p><img src="img/gso2015.png" alt="gso"></p>
+
+<h3>SentiPair Sequence</h3>
+
+<p>When considering the problem of GIF sentiment analysis, we should firstly figure out a way to represent our research target—GIF video. A good representation should follow several criterions:</p>
+
+<ol>
+<li><strong>Descriptive</strong>: to describe the abstract information </li>
+<li><strong>Detective</strong>: to be detected</li>
+<li><strong>Easy</strong>: to model the abstractions easily.</li>
+<li><strong>Flexible</strong>: able to be extended.</li>
+</ol>
+
+<p><img src="img/tree.png" alt="My cool picture"></p>
+
+<p>To resolve these criterions, we introduced the SentiPair Sequence. <strong>A SentiPair Sequence is a sequence of SentiPairs, while the SentiPair is the joint name of Adjective Noun Pair (ANP) and Verb Noun Pair (VNP)</strong>. In a SentiPair Sequence, each SentiPair refers to a concrete concept like “smile face” or “falling cup”, and SentiPairs are placed in the order of their occurrence.</p>
+
+<p><img src="img/1-3.png" alt="My cool picture">
+As we can see, the girl in the video acts differently. At the very first, The girl is smiling and hence the first SentiPair indicates “Lovely Girl”, In the next frame, the girl looked a bit worried, and the second SentiPair is “Innocent Girl”, With the third SentiPair indicates “Girl Frown”, we can find out that the girl looks sad, which contains a negative sentiment tendency. In the last frame, the girl failed to suppress her feeling.
+<img src="img/sentipair.png" alt="sentipair"></p>
+
+<h3>Synset Forest</h3>
+
+<p>SentiPairs are built on three kinds of words: adjectives, verbs and nouns. In order to build ANP/VNP, we should first build the collection of words to choose from. We concluded some criterions for a good word collection.</p>
+
+<ol>
+<li>Coverage, a good word collection should cover as much domains as possible in order to convey the information</li>
+<li>Discrepancy, words of similar meanings should appear only once to prevent ambiguous ANP/VNP.</li>
+<li>Sentiment relation, all the words in the collection should have a clear sentiment relation.</li>
+</ol>
+
+<p>We introduced <strong>Synset Forest</strong> to resolve these three criterions. The Synset Forest is a forest consists of three trees, namely adjective tree, verb tree and the noun tree.</p>
+
+<p>In the Wordnet, Synsets are interlinked by means of conceptual-semantic and lexical relations. By proposing the Synset Forest, we modeled a unified semantic and concept architecture. The Synset Forest acts as a collection of candidate words for Adjective Noun Pairs and Verb Noun Pairs. Since each node comes with a sentiment score, the weight for each ANP/VNP is decided at the first place.</p>
+
+<h3>Performance</h3>
+
+<p>We designed two experiments. The first experiment is designed to evaluate the performance of SentiPair Sequences we proposed. Different models applied and the evaluation metric is the accuracy. Moreover, we explored the possibility to simplify the problem by introducing feature selection.
+The second experiment is designed to compare the performance of our framework to the state-of-the-art representation VSO (Borth et al. 2013). The evaluation metric is the accuracy as well.
+We choose to use the GSO-2015 dataset to train the sentiment classifiers. One of the advantages of GSO is its ability to convey temporal information (through SentiPair Combination). The training set consists of 1124 positive instances (60.3%), 146 negative instances (7.8%) and 599 neutral ones (32.1%).</p>
+
+<h3>GSO-2015 Dataset</h3>
+
+<p>We built a new GIF video dataset from one of the most popular micro-blog provider. All the GIF videos were posted by online users and were collected automatically. We built 40,000+ distinct candidates. These candidates were then manually labeled in the fashion of GIF Sentiment Ontology. This work is possible owing to the crowd intelligence. We recruited 7 workers. Each worker was shown one GIF video and was expected to accomplish two &quot;tasks&quot;. &quot;Task 1&quot; is to depict the given GIF using SentiPair Sequence. To be more specific, for each GIF, SentiPairs were chosen by the worker. And each SentiPair consists either of an adjective and a noun (ANP) or a verb and a noun (VNP). Figure 4 illustrates the flow of SentiPairs and the corresponding GIF. In &quot;Task 2&quot; workers were expected to give the image an overall sentiment judgment (Positive/Negative/Neutral/Can&#39;t Judge).</p>
+
+
+  <!-- ----------------------------MarkDown Ends Here---------------------------------------- -->
+	</div>
+
+
+
+
+
+
+</body>
+
+	<div class="container marketing" style="margin:0px auto">
+		<footer>
+			Xiamen University is a beautiful university located in the south east China.  
+		 
+
+		</footer>
+	</div>
+</html>
